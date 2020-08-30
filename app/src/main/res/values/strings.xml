@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">MercadoMexico</string>
+    <string name="facebook_app_id">652983748653892</string> <string name="fb_login_protocol_scheme">fb652983748653892</string>
+</resources>
