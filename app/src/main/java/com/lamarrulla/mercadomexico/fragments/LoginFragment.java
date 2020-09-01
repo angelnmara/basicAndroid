@@ -15,9 +15,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -35,6 +37,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.lamarrulla.mercadomexico.BottomNavigationActivity;
+import com.lamarrulla.mercadomexico.MainActivity;
 import com.lamarrulla.mercadomexico.R;
 
 /**
@@ -140,12 +143,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(context, gso);
 
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
-        //GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        //updateUI(account);
-
-
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
@@ -169,6 +166,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         view.findViewById(R.id.sign_in_button).setOnClickListener((View.OnClickListener) this);
         /*  Google login    */
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                Toast.makeText(context, "Hasta la vista baby.", Toast.LENGTH_SHORT).show();
+                getActivity().moveTaskToBack(true);
+                getActivity().finish();
+                return false;
+            }
+        });
     }
 
     @Override
@@ -225,10 +234,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     private void goToBottomNavigarionActivity(){
-        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        //getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         Intent intent = new Intent(context, BottomNavigationActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        getActivity().finish();
     }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
@@ -272,6 +282,4 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
-
-    
 }

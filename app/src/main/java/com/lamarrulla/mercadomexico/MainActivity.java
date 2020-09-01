@@ -41,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
         if(isLoggedInGoogle || isLoggedInFB){
             Intent intent = new Intent(this, BottomNavigationActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            MainActivity.this.finish();
         }else{
             fragment = new LoginFragment();
             getSupportFragmentManager().beginTransaction().replace(R.id.clyMain, fragment, fragment.getClass().getSimpleName()).addToBackStack(null).commit();
