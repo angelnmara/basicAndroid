@@ -1,5 +1,6 @@
 package com.lamarrulla.mercadomexico;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -65,6 +66,7 @@ public class BottomNavigationActivity extends AppCompatActivity implements View.
 
         if(isLoggedInFB){
             LoginManager.getInstance().logOut();
+            regresaMain();
         }else if(isLoggedInGoogle){
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
@@ -74,12 +76,18 @@ public class BottomNavigationActivity extends AppCompatActivity implements View.
                     .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(BottomNavigationActivity.this, "Usuario deslogeado", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(BottomNavigationActivity.this, "Usuario deslogeado", Toast.LENGTH_SHORT).show();
+                            regresaMain();
                         }
                     });
         }else{
             Toast.makeText(this, "Exite un error al deslogear", Toast.LENGTH_SHORT).show();
         }
-
     }
+
+    private void regresaMain(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }
