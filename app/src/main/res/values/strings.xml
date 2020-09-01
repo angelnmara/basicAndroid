@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">MercadoMexico</string>
-    <string name="facebook_app_id">652983748653892</string> <string name="fb_login_protocol_scheme">fb652983748653892</string>
+    <string name="facebook_app_id">652983748653892</string>
+    <string name="fb_login_protocol_scheme">fb652983748653892</string>
     <string name="server_client_id">847330230789-njf2jvbep9cutfpije3q19rm9046t1s1.apps.googleusercontent.com</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bottom_navigation">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
